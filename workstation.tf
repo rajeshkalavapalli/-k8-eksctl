@@ -1,12 +1,12 @@
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
 
-  name = "workstation"
+  name = "workstation-ekctl"
   ami = data.aws_ami.centos-8-Practice.id
   instance_type          = "t2.micro"
   #key_name               = "user1"
   #monitoring             = true
-  vpc_security_group_ids = [aws_security_group.allow_minikube.id]
+  vpc_security_group_ids = [aws_security_group.allow_eksctl.id]
   subnet_id              = "subnet-043091cc04d94c6a7"
   user_data = file("workstation.sh") 
   tags = {
